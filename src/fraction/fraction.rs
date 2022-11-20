@@ -1,5 +1,7 @@
 mod digits;
 
+use std::ops::{Mul, MulAssign};
+
 pub struct Fraction {
     nummerator: u128,
     denominator: u128,
@@ -13,6 +15,10 @@ fn get_cloned_vec(vec: &Vec<u32>, excluded_index: usize) -> Vec<u32> {
 }
 
 impl Fraction {
+    pub fn get_denominator(&self) -> u128 {
+        self.denominator
+    }
+
     pub fn new(nummerator: u128, denominator: u128) -> Fraction {
         Fraction {
             nummerator,
@@ -72,6 +78,23 @@ impl PartialEq for Fraction {
         let rhs = other.get_reduced_fraction();
 
         lhs.nummerator == rhs.nummerator && lhs.denominator == rhs.denominator
+    }
+}
+
+impl Mul for &Fraction {
+    type Output = Fraction;
+    fn mul(self, rhs: Self) -> Fraction {
+        Fraction::new(
+            self.nummerator * rhs.nummerator,
+            self.denominator * rhs.denominator,
+        )
+    }
+}
+
+impl MulAssign<&Fraction> for Fraction {
+    fn mul_assign(&mut self, rhs: &Self) {
+        self.nummerator *= rhs.nummerator;
+        self.denominator *= rhs.denominator;
     }
 }
 

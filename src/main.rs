@@ -16,5 +16,16 @@ fn main() {
         }
     }
 
-    // println!("{:?}", curious_fractions);
+    let mut product = Fraction::new(1, 1);
+
+    for frac in curious_fractions.iter() {
+        product *= frac;
+    }
+
+    let answer_p33 = product.get_reduced_fraction().get_denominator();
+
+    println!(
+        "The answer to problem 33 of project Euler is {}.",
+        answer_p33
+    );
 }
