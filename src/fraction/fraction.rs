@@ -2,6 +2,7 @@ mod digits;
 
 use std::ops::{Mul, MulAssign};
 
+#[derive(Debug)]
 pub struct Fraction {
     nummerator: u128,
     denominator: u128,

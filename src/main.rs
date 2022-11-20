@@ -18,7 +18,8 @@ fn main() {
 
     let mut product = Fraction::new(1, 1);
 
-    for frac in curious_fractions.iter() {
+    for (i, frac) in curious_fractions.iter().enumerate() {
+        println!("Curious frac {}: {:?}", i, frac);
         product *= frac;
     }
 
